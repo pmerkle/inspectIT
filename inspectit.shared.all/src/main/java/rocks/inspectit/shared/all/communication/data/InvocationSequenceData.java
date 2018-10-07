@@ -5,9 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.codehaus.jackson.annotate.JsonAutoDetect;
-import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
-import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 import rocks.inspectit.shared.all.cmr.cache.IObjectSizes;
@@ -23,9 +22,8 @@ import rocks.inspectit.shared.all.tracing.data.SpanIdent;
  * <code>InvocationSequenceData</code> instances.
  *
  * @author Patrice Bouillet
- * @see rocks.inspectit.shared.cs.communication.data.InvocationSequenceDataHelper
+ * @see InvocationSequenceDataHelper
  */
-@JsonAutoDetect(fieldVisibility = Visibility.ANY, getterVisibility = Visibility.NONE, setterVisibility = Visibility.NONE)
 public class InvocationSequenceData extends MethodSensorData implements ISpanIdentAware {
 
 	/**
@@ -36,37 +34,33 @@ public class InvocationSequenceData extends MethodSensorData implements ISpanIde
 	/**
 	 * The nested invocation traces are stored in this list.
 	 */
-	@JsonSerialize(include = JsonSerialize.Inclusion.NON_EMPTY)
+	@JsonManagedReference
 	private List<InvocationSequenceData> nestedSequences = new ArrayList<InvocationSequenceData>(0);
 
 	/**
 	 * The parent sequence of this sequence if there is any.
 	 */
-	@JsonIgnore
+	@JsonBackReference
 	private InvocationSequenceData parentSequence;
 
 	/**
 	 * The associated timer data object. Can be <code>null</code>.
 	 */
-	@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 	private TimerData timerData;
 
 	/**
 	 * The associated sql statement data object. Can be <code>null</code>.
 	 */
-	@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 	private SqlStatementData sqlStatementData;
 
 	/**
 	 * The associated exception sensor data object. Can be <code>null</code>.
 	 */
-	@JsonSerialize(include = JsonSerialize.Inclusion.NON_EMPTY)
 	private List<ExceptionSensorData> exceptionSensorDataObjects;
 
 	/**
 	 * The associated logging data. Can be <code>null</code>.
 	 */
-	@JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 	private LoggingData loggingData;
 
 	/**
@@ -79,7 +73,6 @@ public class InvocationSequenceData extends MethodSensorData implements ISpanIde
 	/**
 	 * The position if parent sequence is not <code>null</code>.
 	 */
-	@JsonIgnore
 	private long position;
 
 	/**
@@ -90,13 +83,11 @@ public class InvocationSequenceData extends MethodSensorData implements ISpanIde
 	/**
 	 * The start time of this invocation sequence.
 	 */
-	@JsonIgnore
 	private double start;
 
 	/**
 	 * The end time of this invocation sequence.
 	 */
-	@JsonIgnore
 	private double end;
 
 	/**
@@ -107,13 +98,11 @@ public class InvocationSequenceData extends MethodSensorData implements ISpanIde
 	/**
 	 * If the {@link SqlStatementData} is available in this or one of the nested invocations.
 	 */
-	@JsonIgnore
 	private Boolean nestedSqlStatements;
 
 	/**
 	 * If the {@link ExceptionSensorData} is available in this or one of the nested invocations.
 	 */
-	@JsonIgnore
 	private Boolean nestedExceptions;
 
 	/**

@@ -28,7 +28,7 @@ sourceSets {
 /** Some agent specific properties */
 ext {
 	distJarName = 'inspectit-agent'
-	releaseName = "inspectit-agent-java6-${versionInfo}.zip"
+	releaseName = "inspectit-agent-java6-${versionInfo}-experimental.zip"
 }
 
 /** Setting compile configuration as plugin in Eclipse needs it */

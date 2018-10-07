@@ -210,7 +210,7 @@ def releaseSingle(os, distName) {
 		}
 
 		// task properties
-		archiveName = "${distName}-${versionInfo}.zip"
+		archiveName = "${distName}-${versionInfo}-experimental.zip"
 		destinationDir = distDir
 		// packing
 		from zipTree(archiveFile)

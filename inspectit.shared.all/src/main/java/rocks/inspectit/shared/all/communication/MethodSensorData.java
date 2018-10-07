@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import rocks.inspectit.shared.all.cmr.cache.IObjectSizes;
 import rocks.inspectit.shared.all.communication.data.ParameterContentData;
@@ -41,6 +41,7 @@ public abstract class MethodSensorData extends DefaultData {
 	 * Contains optional information about the contents of some fields / parameters etc.
 	 */
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private Set<ParameterContentData> parameterContentData;
 
 	/**
@@ -127,7 +128,6 @@ public abstract class MethodSensorData extends DefaultData {
 	 *
 	 * @return {@link #parameterContentData}
 	 */
-	@JsonIgnore
 	public Set<ParameterContentData> getParameterContentData() {
 		return parameterContentData;
 	}

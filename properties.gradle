@@ -9,8 +9,8 @@ ext {
 	 * Version settings for local builds.
 	 * Can be overwritten with -PintegrateVersionInfo=true -Denv.RELEASE_VERSION= -Denv.BUILD_NUMBER=
 	 */
-	versionInfo = '1.8.0'
-	
+	versionInfo = '1.9.2.106'
+		
 	/** QA settings */
 	baseDir = project.projectDir
 	buildRoot = "${baseDir}/build"

@@ -208,7 +208,7 @@ task release {
 def releaseSingle(os) {	
 	return tasks.create(name: "release-${os}-x64", type: Zip, dependsOn: jar) {
 		def arch = 'x64' 
-		archiveName = "inspectit-cmr.${os}.${arch}-${versionInfo}.zip"
+		archiveName = "inspectit-cmr.${os}.${arch}-${versionInfo}-experimental.zip"
 		destinationDir = file(buildReleasePackages)
 	
 		def jreFile
